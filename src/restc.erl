@@ -213,7 +213,7 @@ get_key(Key, Obj, Def) ->
     end.
 
 parse_body(_, <<>>)                      -> [];
-parse_body(<<"application/json">>, Body) -> jsx:decode(Body);
+parse_body(<<"application/json">>, Body) -> jsx:decode(Body, [return_maps]);
 parse_body(<<"application/xml">>, Body)  ->
     {ok, Data, _} = erlsom:simple_form(binary_to_list(Body)),
     Data;
